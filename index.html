@@ -5,28 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-
-    <p>Datum</p>
-    <input  id="date">
-
-    <p>Rubrik</p>
-    <input id="title">
-
-    <p>Text</p>
-    <textarea id="content"></textarea>
-
+    <h1>Dagbok</h1>
+    <p>Här kan du göra dagboksinlägg som sparas</p>
     <br>
-
-    <button id="saveButton" onclick="saveButton()" >Spara</button>
-    <hr />
-    <br/>
-    <br/>
-
-    <section id="savedItems">    
-    </section>
+    <h3>Välj datum</h3>
+    <input id="date" type="date">
+    <br>
+    <h3>Vad vill du ha för rubrik på inlägget?</h3>
+    <input placeholder="Rubrik" id="heading" type="text">
+    <br>
+    <br>
+    <textarea placeholder="skriv vad du vill här......" id="text"></textarea>
+    <br>
+    <button id="postButton">Post</button>
+    <br>
+    <br>
+    <hr>
+    <div>
+        <div id="showPosts"></div>
+    </div>
 
     <script src="./script.js"></script>
 </body>
