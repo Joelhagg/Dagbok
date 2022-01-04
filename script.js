@@ -14,7 +14,7 @@ if (savedPosts) {
       .getElementById("showPosts")
       .appendChild(
         document.createElement("div")
-      ).innerHTML = `<h2>Datum: ${savedObject.date}</h2><h2>Rubrik: ${savedObject.title}</h2><p>Inlägg: ${savedObject.content}</p><button onclick="removeEntry(${index})">radera</button><hr />`;
+      ).innerHTML = `<h2>Datum: ${savedObject.date}</h2><h2>Rubrik: ${savedObject.title}</h2><h2>Inlägg:</h2><p> ${savedObject.content}</p><button onclick="removeEntry(${index})">radera</button><br><hr />`;
   });
 }
 
