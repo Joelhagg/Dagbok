@@ -5,28 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
 
-    <p>Datum</p>
-    <input  id="date">
+    <input id="date" type="date">
+    
+    <input id="heading" type="text">
 
-    <p>Rubrik</p>
-    <input id="title">
+    <textarea id="text"></textarea>
 
-    <p>Text</p>
-    <textarea id="content"></textarea>
+    <button id="postButton">Post</button>
 
-    <br>
-
-    <button id="saveButton" onclick="saveButton()" >Spara</button>
-    <hr />
-    <br/>
-    <br/>
-
-    <section id="savedItems">    
-    </section>
+    <div>
+        <div id="showPosts"></div>
+    </div>
 
     <script src="./script.js"></script>
 </body>

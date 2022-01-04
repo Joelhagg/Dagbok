@@ -1,71 +1,49 @@
-// Först så gör vi en tom array och ser till att hämta den-
-// -nedpackade arrayn som en string.
+let savedPosts = [];
 
-let myDiary = [];
-const wholeDiary = localStorage.getItem("diary");
+let myWholeDiary = localStorage.getItem("post");
 
-// Sen sparar vi objektet som vi får av att ha parsat strängen.
-
-const myDiaryParsed = JSON.parse(wholeDiary);
-
-// Om det finns något i myDiaryParsed så sparar vi den till myDiary.
+let myDiaryParsed = JSON.parse(myWholeDiary);
 
 if (myDiaryParsed) {
-  myDiary = myDiaryParsed;
+  savedPosts = myDiaryParsed;
 }
 
-// Om det finns något i myDiary så kör vi .map av innehållet och ger-
-// -den ett index och sedan skapar ett element av varje objekt.
-
-if (myDiary) {
-  myDiary.map((entry, index) => {
+if (savedPosts) {
+  savedPosts.map((savedObject, index) => {
     document
-      .getElementById("savedItems")
+      .getElementById("showPosts")
       .appendChild(
         document.createElement("div")
-      ).innerHTML = `<h1>Datum : ${entry.date}</h1> <h2>Title : ${entry.title}</h2><p>${entry.content}</p><button onclick="removeEntry(${index})">radera</button><hr />`;
+      ).innerHTML = `<h2>Datum: ${savedObject.date}</h2><h2>Rubrik: ${savedObject.title}</h2><p>Inlägg: ${savedObject.content}</p><button onclick="removeEntry(${index})">radera</button><hr />`;
   });
 }
 
-// När vi får ett klick ifrån saveButton så hämtar vi värdena-
-// -från input fälten och sparar dom i variablar.
+let postSave = () => {
+  console.log("save");
+  let date = document.getElementById("date").value;
+  let title = document.getElementById("heading").value;
+  let content = document.getElementById("text").value;
 
-const saveButton = () => {
-  const date = document.getElementById("date").value;
-  const title = document.getElementById("title").value;
-  const content = document.getElementById("content").value;
-
-  // För att sedan skapa ett objekt av dom värdena.
-
-  const entry = {
+  let savedObject = {
     date: date,
     title: title,
     content: content,
   };
+  savedPosts.push(savedObject);
 
-  // Här lägger vi till objektet till den "toma" array:n.
-
-  myDiary.push(entry);
-
-  // Här plockar vi ur innehållet ur arrayn för att göra det-
-  // -tillgängligt utanför den här funktionen.
-
-  saveDiary(myDiary);
+  saveDiary(savedPosts);
 };
 
-// För att kunna plocka bort ett inlägg så använder vi oss av indexvärdet-
-// -och splicear bort det som ska raderas.
+let postButton = document.getElementById("postButton");
+postButton.addEventListener("click", postSave);
 
-const removeEntry = (index) => {
-  myDiary.splice(index, 1);
-  saveDiary(myDiary);
+let removeEntry = (index) => {
+  savedPosts.splice(index, 1);
+  saveDiary(savedPosts);
 };
 
-// För att spara till local storage så gör vi först om array:n till en string-
-// -och sätter "diary" som key och sedan laddar om sidan
-
-const saveDiary = (data) => {
-  const diaryStringify = JSON.stringify(data);
-  localStorage.setItem("diary", diaryStringify);
+let saveDiary = (data) => {
+  let diaryStringifyd = JSON.stringify(data);
+  localStorage.setItem("post", diaryStringifyd);
   location.reload();
 };
